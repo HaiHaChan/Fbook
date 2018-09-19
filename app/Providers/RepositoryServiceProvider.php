@@ -12,6 +12,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Eloquents\OfficeEloquentRepository',
         ],
         [
+            'App\Repositories\Contracts\UserRepository',
+            'App\Repositories\Eloquents\UserEloquentRepository',
+        ],
+        [
             'App\Repositories\Contracts\CategoryRepository',
             'App\Repositories\Eloquents\CategoryEloquentRepository',
         ],
@@ -20,8 +24,8 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Eloquents\BookEloquentRepository',
         ],
         [
-            'App\Repositories\Contracts\UserRepository',
-            'App\Repositories\Eloquents\UserEloquentRepository',
+            'App\Repositories\Contracts\MediaRepository',
+            'App\Repositories\Eloquents\MediaEloquentRepository',
         ],
         [
             'App\Repositories\Contracts\RoleRepository',
@@ -30,10 +34,6 @@ class RepositoryServiceProvider extends ServiceProvider
         [
             'App\Repositories\Contracts\RoleUserRepository',
             'App\Repositories\Eloquents\RoleUserEloquentRepository',
-        ],
-        [
-            'App\Repositories\Contracts\MediaRepository',
-            'App\Repositories\Eloquents\MediaEloquentRepository',
         ],
         [
             'App\Repositories\Contracts\BookCategoryRepository',

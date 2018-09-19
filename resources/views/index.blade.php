@@ -61,16 +61,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title text-center mb-50">
-                    <h2>Top interesting</h2>
-                    <p>Browse the collection of our best selling and top interresting products. <br /> ll definitely find what you are looking for..</p>
+                    <h2>{{ trans('settings.home.top_interesting') }}</h2>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="tab-menu mb-40 text-center">
                     <ul>
-                        <li class="active"><a href="#Audiobooks" data-toggle="tab">New Arrival </a></li>
-                        <li><a href="#books" data-toggle="tab">OnSale</a></li>
-                        <li><a href="#bussiness" data-toggle="tab">Featured Products</a></li>
+                        <li class="active"><a href="#Audiobooks" data-toggle="tab">{{ trans('settings.home.top_rating') }}</a></li>
+                        <li><a href="#books" data-toggle="tab">{{ trans('settings.home.top_review') }}</a></li>
+                        <li><a href="#bussiness" data-toggle="tab">{{ trans('settings.home.top_view') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,17 +77,29 @@
         <div class="tab-content">
             <div class="tab-pane active" id="Audiobooks">
                 <div class="tab-active owl-carousel">
-                    @include('layout.section.top_book')
+                    @if (isset($topInteresting) && !empty($topInteresting))
+                        @foreach($topInteresting as $book)
+                            @include('layout.section.top_book')
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="tab-pane fade" id="books">
                 <div class="tab-active owl-carousel">
-                    @include('layout.section.top_book')
+                    @if (isset($topReview) && !empty($topReview))
+                        @foreach($topReview as $book)
+                            @include('layout.section.top_book')
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="tab-pane fade" id="bussiness">
                 <div class="tab-active owl-carousel">
-                    @include('layout.section.top_book')
+                    @if (isset($topViewed) && !empty($topViewed))
+                        @foreach($topViewed as $book)
+                            @include('layout.section.top_book')
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -114,10 +125,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="bestseller-content">
-                    <h1>Author best selling</h1>
-                    <h2>J. K. <br />Rowling</h2>
-                    <p class="categories">categories:<a href="#">Books</a>, <a href="#">Audiobooks</a></p>
-                    <p>Vestibulum porttitor iaculis gravida. Praesent vestibulum varius placerat. Cras tempor congue neque, id aliquam orci finibus sit amet. Fusce at facilisis arcu. Donec aliquet nulla id turpis semper, a bibendum metus vulputate. Suspendisse potenti. </p>
+                    <h1>{{ trans('settings.home.best_sharing') }}</h1>
+                    <h2>{{ $hotUser->name }}</h2>
                     <div class="social-author">
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -126,12 +135,16 @@
                     </div>
                 </div>
                 <div class="banner-img-2">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '6.jpg') }}" alt="banner" /></a>
+                    @if($bestSharing)
+                        <a href="#"><img src="{{ asset(config('view.image_paths.product') . $bestSharing[0]->medias[0]->path) }}" alt="banner" /></a>
+                    @else
+                        <a href="#"><img src="{{ asset(config('view.image_paths.product') . '6.jpg') }}" alt="banner" /></a>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="bestseller-active owl-carousel">
-                    @include('layout.section.bestseller')
+                    @include('layout.section.bestsharing')
                 </div>
             </div>
         </div>
@@ -142,12 +155,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title bt text-center pt-100 mb-30 section-title-res">
-                    <h2>Featured Books</h2>
+                    <h2>{{ trans('settings.home.latest_books') }}</h2>
                 </div>
             </div>
         </div>
         <div class="tab-active owl-carousel">
-            @include('layout.section.suggest_book')
+            @include('layout.section.latest_book')
         </div>
     </div>
 </div>
@@ -170,30 +183,18 @@
 <div class="most-product-area pt-90 pb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-mb">
-                <div class="section-title-2 mb-30">
-                    <h3>Book</h3>
-                </div>
-                <div class="product-active-2 owl-carousel">
-                    @include('layout.section.category_book')
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-mb">
-                <div class="section-title-2 mb-30">
-                    <h3>Audio books </h3>
-                </div>
-                <div class="product-active-2 owl-carousel">
-                     @include('layout.section.category_book')
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                <div class="section-title-2 mb-30">
-                    <h3>children’s books</h3>
-                </div>
-                <div class="product-active-2 owl-carousel">
-                    @include('layout.section.category_book')
-                </div>
-            </div>
+            @if($officeBooks)
+                @foreach($officeBooks as $item)
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-mb">
+                        <div class="section-title-2 mb-30">
+                            <h3>{{ $item['office'] }}</h3>
+                        </div>
+                        <div class="product-active-2 owl-carousel">
+                            @include('layout.section.offcie_book')
+                        </div>
+                    </div>
+                @endforeach
+            @endif
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="block-newsletter">
                     <h2>Sign up for send newsletter</h2>

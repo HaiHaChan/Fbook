@@ -163,6 +163,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
     ],
 
     /*

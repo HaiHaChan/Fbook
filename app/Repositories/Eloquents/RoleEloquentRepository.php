@@ -12,10 +12,11 @@ class RoleEloquentRepository extends AbstractEloquentRepository implements RoleR
         return new Role;
     }
 
-    public function getData()
+    public function getData($with = [], $data = [], $dataSelect = ['*'])
     {
         return $this->model()
-            ->select()
-            ->get();
+            ->select($dataSelect)
+            ->with($with)
+            ->paginate(8);
     }
 }

@@ -14,11 +14,11 @@
             <div class="product-details text-center">
                 <div class="product-rating">
                     <ul>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        {{-- @if($book->avg_star > 1)
+                            @for($i = 1; $i < $book->avg_star; $i++)
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            @endfor
+                        @endif --}}
                     </ul>
                 </div>
                 <h4><a href="#">Joust Duffle Bag</a></h4>
@@ -43,11 +43,11 @@
             <div class="product-details text-center">
                 <div class="product-rating">
                     <ul>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        {{-- @if($book->avg_star > 1)
+                            @for($i = 1; $i < $book->avg_star; $i++)
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            @endfor
+                        @endif --}}
                     </ul>
                 </div>
                 <h4><a href="#">Driven Backpack</a></h4>

@@ -14,7 +14,10 @@ class CategoryEloquentRepository extends AbstractEloquentRepository implements C
 
     public function getData($data = [], $with = [], $dataSelect = ['*'])
     {
-        return $this->model()->all();
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
     }
 
     public function store($data = [])

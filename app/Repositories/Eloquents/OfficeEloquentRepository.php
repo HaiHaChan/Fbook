@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Eloquent\Office;
+use App\Eloquent\User;
 use App\Repositories\Contracts\OfficeRepository;
 
 class OfficeEloquentRepository extends AbstractEloquentRepository implements OfficeRepository
@@ -12,10 +13,11 @@ class OfficeEloquentRepository extends AbstractEloquentRepository implements Off
         return new Office;
     }
 
-    public function getData()
+    public function getData($data = [], $with = [], $dataSelect = ['*'])
     {
         return $this->model()
-            ->select()
-            ->pluck('name', 'id');
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
     }
 }
